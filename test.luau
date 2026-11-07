@@ -29,46 +29,9 @@ ConfigTab:CreateConfigSection()
 -- ====================================================================
 -- TAB: INFO AND STATUS
 -- ====================================================================
-
 Tabs.Info:CreateSection("Status Server")
-local TimeZone = Tabs.Info:CreateParagraph({Title = "Time Zone", Content = ""})
 local GameTime = Tabs.Info:CreateParagraph({Title = "Game Time", Content = ""})
-
-function UpdateOS()
-    local date = os.date("*t")
-    local hour = (date.hour) % 24
-    local ampm = hour < 12 and "AM" or "PM"
-    local timezone = string.format("%02i:%02i:%02i %s", ((hour - 1) % 12) + 1, date.min, date.sec, ampm)
-    local datetime = string.format("%02d/%02d/%04d", date.day, date.month, date.year)    
-    
-    local LocalizationService = game:GetService("LocalizationService")
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    local result, code    
-    
-    if not getgenv().countryRegionCode then
-        result, code = pcall(function()
-            return LocalizationService:GetCountryRegionForPlayerAsync(player)
-        end)
-        if result then
-            getgenv().countryRegionCode = code
-        else
-            getgenv().countryRegionCode = "Unknown"
-        end
-    else
-        code = getgenv().countryRegionCode
-    end
-    
-    TimeZone:SetContent(datetime.." - "..timezone.." [ " .. code .. " ]")
-end
-
-spawn(function()
-    while true do
-        UpdateOS()
-        wait(1)
-    end
-end)
-
+-- Game Time
 function UpdateGameTime()
     local GameTimeValue = math.floor(workspace.DistributedGameTime + 0.5)
     local Hour = math.floor(GameTimeValue / (60^2)) % 24
@@ -84,6 +47,7 @@ spawn(function()
     end
 end)
 
+-- Mirage Island
 local MirageCheck = Tabs.Info:CreateParagraph({Title = "Mirage Island", Content = "Status: "})
 local previousMirageStatus = ""
 spawn(function()
@@ -100,6 +64,7 @@ spawn(function()
     end)
 end)
 
+-- Kitsune Island
 local KitsuneCheck = Tabs.Info:CreateParagraph({Title = "Kitsune Island", Content = "Status: "})
 local previousKitsuneStatus = ""
 spawn(function()
@@ -114,6 +79,7 @@ spawn(function()
     end
 end)
 
+-- Prehistoric Island
 local PrehistoricCheck = Tabs.Info:CreateParagraph({Title = "Prehistoric Island", Content = "Status: "})
 local previousPrehistoricStatus = ""
 task.spawn(function()
@@ -128,6 +94,7 @@ task.spawn(function()
     end
 end)
 
+-- Frozen Dimension
 local FrozenCheck = Tabs.Info:CreateParagraph({Title = "Frozen Dimension", Content = "Status: "})
 local previousFrozenStatus = ""
 spawn(function()
@@ -142,19 +109,7 @@ spawn(function()
     end
 end)
 
-local CakePrinceStatus = Tabs.Info:CreateParagraph({Title = "Cake Prince", Content = ""})
-spawn(function()
-    while wait(1) do
-        local okCP, cakePrince = pcall(function() return game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner") end)
-        local killStatus = "Cake Prince: ✅"
-        if okCP and type(cakePrince) == "string" and string.len(cakePrince) >= 86 then
-            local killCount = string.sub(cakePrince, 39, 41)
-            killStatus = "Killed: " .. killCount
-        end
-        CakePrinceStatus:SetContent(killStatus)
-    end
-end)
-
+-- Rip Indra
 local RipIndraCheck = Tabs.Info:CreateParagraph({Title = "Rip Indra", Content = "Status: "})
 local previousRipStatus = ""
 spawn(function()
@@ -170,6 +125,7 @@ spawn(function()
     end
 end)
 
+-- Dough King
 local DoughKingCheck = Tabs.Info:CreateParagraph({Title = "Dough King", Content = "Status: "})
 local previousDoughStatus = ""
 spawn(function()
@@ -185,6 +141,7 @@ spawn(function()
     end
 end)
 
+-- Full Moon
 local FullMoonCheck = Tabs.Info:CreateParagraph({Title = "Full Moon", Content = ""})
 task.spawn(function()
     while task.wait(1) do
@@ -209,6 +166,7 @@ task.spawn(function()
     end
 end)
 
+-- Legendary Sword
 local LegendarySwordCheck = Tabs.Info:CreateParagraph({Title = "Legendary Sword", Content = "Status: "})
 spawn(function()
     while wait(5) do
@@ -222,6 +180,21 @@ spawn(function()
     end
 end)
 
+-- Cake Prince
+local CakePrinceStatus = Tabs.Info:CreateParagraph({Title = "Cake Prince", Content = ""})
+spawn(function()
+    while wait(1) do
+        local okCP, cakePrince = pcall(function() return game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner") end)
+        local killStatus = "Cake Prince: ✅"
+        if okCP and type(cakePrince) == "string" and string.len(cakePrince) >= 86 then
+            local killCount = string.sub(cakePrince, 39, 41)
+            killStatus = "Killed: " .. killCount
+        end
+        CakePrinceStatus:SetContent(killStatus)
+    end
+end)
+
+-- Bone
 local BoneCount = Tabs.Info:CreateParagraph({Title = "Bone", Content = ""})
 spawn(function()
     while wait(1) do
@@ -232,10 +205,13 @@ spawn(function()
     end
 end)
 
+
+
+
 -- ====================================================================
 -- TAB: FARMING
 -- ====================================================================
-
+-- Select Weapon
 local RFSubmarineWorkerSpeak = replicated.Modules.Net["RF/SubmarineWorkerSpeak"]
 WeaponDropdown = Tabs.Main:CreateDropdown({
     Name = "Select Weapon",
@@ -245,6 +221,10 @@ WeaponDropdown = Tabs.Main:CreateDropdown({
     _G.ChooseWP = Value
 end})
 
+
+-- =================
+-- Farming (Level, Nearest, Factory Raid, Pirate Raid, Ectoplasm)
+-- =================
 Tabs.Main:CreateSection("Farming")
 FarmLevel = Tabs.Main:CreateToggle({
     Name = "Auto Farm Level",
@@ -293,6 +273,9 @@ Callback = function(Value)
   _G.AutoEctoplasm = Value
 end})
 
+-- =================
+-- Chest
+-- =================
 Tabs.Main:CreateSection("Chest")
 ChestTW = Tabs.Main:CreateToggle({
 Name = "Auto Farm Chest",
@@ -385,6 +368,9 @@ Callback = function(Value)
     _G.StopWhenChalice = Value
 end})
 
+-- =================
+-- Berry
+-- =================
 Tabs.Main:CreateSection("Berry")
 Berry = Tabs.Main:CreateToggle({
 Name = "Auto Farm Berry",
@@ -402,6 +388,9 @@ Callback = function(Value)
   _G.AutoBerryH = Value
 end})
 
+-- =================
+-- Farm Mob
+-- =================
 Tabs.Main:CreateSection("Farm Mob")
 if World1 then
     Tabs.Main:CreateDropdown({
@@ -468,6 +457,9 @@ Tabs.Main:CreateToggle({
     end
 })
 
+-- =================
+-- All Island
+-- =================
 Tabs.Main:CreateSection("Farm Island")
 Tabs.Main:CreateDropdown({
     Name = "Select Island",
@@ -491,6 +483,9 @@ Tabs.Main:CreateToggle({
     end
 })
 
+-- =================
+-- Elit Hunter
+-- =================
 Tabs.Main:CreateSection("Elite Hunter")
 local Process = Tabs.Main:CreateParagraph({Title = "Elites Process", Content = ""})
 spawn(function()
@@ -539,6 +534,9 @@ EliteH = Tabs.Main:CreateToggle({
 	_G.FarmEliteH = Value
 end})
 
+-- =================
+-- Rip Indra (Rip Indra, Unlock Haki)
+-- =================
 Tabs.Main:CreateSection("Rip Indra")
 Tabs.Main:CreateToggle({
 Name = "Auto Farm Rip Indra",
@@ -569,6 +567,9 @@ spawn(function()
     end
 end)
 
+-- =================
+-- Cake Prince (Cake Prince, Dough King)
+-- =================
 Cake = Tabs.Main:CreateToggle({
     Name = "Auto Farm Cake Prince",
     Description = "",
@@ -596,7 +597,7 @@ CakeSM = Tabs.Main:CreateToggle({
 end})
 
 Tabs.Main:CreateToggle({
-    Name = "Auto Dough King [Fully]",
+    Name = "Auto Dough King Fully",
     Default = false,
     Callback = function(Value)
         _G.AutoDoughKing = Value
@@ -619,6 +620,9 @@ Tabs.Main:CreateToggle({
     end
 })
 
+-- =================
+-- Bone
+-- =================
 Tabs.Main:CreateSection("Bone")
 local CheckingBone = Tabs.Main:CreateParagraph({Title = "Bones", Content = ""})
 spawn(function()
@@ -680,6 +684,9 @@ Callback = function(Value)
   _G.Praying = Value
 end})
 
+-- =================
+-- Tyrant of the Skies
+-- =================
 Tabs.Main:CreateSection("Tyrant of the Skies")
 local TyrantStatus = Tabs.Main:CreateParagraph({Title = "Boss Spawn", Content = ""})
 spawn(function()
@@ -727,6 +734,9 @@ Callback = function(Value)
     _G.FarmPhaBinh = Value
 end})
 
+-- =================
+-- Materia
+-- =================
 Tabs.Main:CreateSection("Material")
 Test = Tabs.Main:CreateDropdown({
 Name = "Choose Material",
@@ -745,6 +755,9 @@ Callback = function(Value)
     getgenv().AutoMaterial = Value
 end})
 
+-- =================
+-- Boss
+-- =================
 Tabs.Main:CreateSection("Boss")
 		BossDropdown = Tabs.Main:CreateDropdown({
 		Name = "Select Boss",
@@ -780,6 +793,9 @@ Callback = function(Value)
     _G.AutoFarmAllBoss = Value
 end})
 
+-- =================
+-- Mastery
+-- =================
 Tabs.Main:CreateSection("Mastery")
 local posMastery = {"Cake","Bone"}
 local Mastery_Config = Tabs.Main:CreateDropdown({
@@ -837,79 +853,8 @@ Callback = function(Value)
   _G.FarmMastery_S = Value
 end})
 
-local MagnetEvent = require(game.ReplicatedStorage.EventConfig.MagnetEvent26)
-Tabs.Main:CreateSection("Update 30 / Magnet Token")
-local magnetStatus = Tabs.Main:CreateParagraph({Title = "Magnet Event Status", Content = "Loading..."})
-local magnetPatrolStatus = Tabs.Main:CreateParagraph({Title = "Status", Content = "Status : Idle"})
 
-SetMagnetStatus = function(status)
-    if magnetPatrolStatus and magnetPatrolStatus.SetContent then
-        pcall(function() magnetPatrolStatus:SetContent("Status : " .. status) end)
-    end
-end
 
-task.spawn(function()
-    while task.wait(1) do
-        pcall(function()
-            local now = os.time()
-            local t = os.date("*t", now)
-            local minute = t.min
-            local second = t.sec
-
-            local isEventTime = (minute >= 0 and minute < 10)
-            local hasEnemy = false
-            for _, mob in pairs(workspace.Enemies:GetChildren()) do
-                if mob:IsA("Model") and (mob:GetAttribute("MagnetEnemy") == true or string.find(string.lower(mob.Name), "magnetized")) then
-                    hasEnemy = true
-                    break
-                end
-            end
-
-            local icon = "🔴"
-            local text = ""
-
-            if hasEnemy then
-                icon = "🟢"
-                local remaining = (10 - minute) * 60 - second
-                if remaining < 0 then remaining = 0 end
-                local mins = math.floor(remaining / 60)
-                local secs = remaining % 60
-                text = string.format("%s ACTIVE - Time Left: %02d:%02d (✅ Enemies Found)", icon, mins, secs)
-            elseif isEventTime then
-                icon = "🟢"
-                local remaining = (10 - minute) * 60 - second
-                if remaining < 0 then remaining = 0 end
-                local mins = math.floor(remaining / 60)
-                local secs = remaining % 60
-                text = string.format("%s ACTIVE - Time Left: %02d:%02d", icon, mins, secs)
-            else
-                local secondsUntilNext = (60 - minute) * 60 - second
-                if secondsUntilNext <= 0 then secondsUntilNext = 0 end
-                local mins = math.floor(secondsUntilNext / 60)
-                local secs = secondsUntilNext % 60
-                text = string.format("%s INACTIVE - Next Event: %02d:%02d", icon, mins, secs)
-            end
-
-            magnetStatus:SetContent(text)
-        end)
-    end
-end)
-
-_G.MagnetEventSpawnIndex = _G.MagnetEventSpawnIndex or 1
-local MAGNET_BLACKLIST_ENEMYSPAWNS = {
-}
-
-Tabs.Main:CreateToggle({
-    Name = "Auto Farm Magnet Token",
-    Default = false,
-    Callback = function(v)
-        _G.AutoMagnetToken = v
-        SetMagnetStatus(v and "Starting..." or "Idle")
-        if not v then
-            _G.MagnetEventSpawnIndex = 1
-        end
-    end
-})
 
 -- ====================================================================
 -- TAB: SETTING
