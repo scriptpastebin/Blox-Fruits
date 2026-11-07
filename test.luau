@@ -2937,7 +2937,7 @@ Tabs.Raids:CreateToggle({
     end
 })
 
-Tabs.Raids:CreateSection("Dungeon")
+Tabs.Raids:CreateSection("Raid")
 DungeonTables = {"Flame","Ice","Quake","Light","Dark","String","Rumble","Magma","Human: Buddha","Sand","Bird: Phoenix","Dough"}
 Q = Tabs.Raids:CreateDropdown({
 Name = "Select Chip",
@@ -3102,7 +3102,7 @@ Callback = function(Value)
   _G.AutoLawKak = Value
 end})
 
-Tabs.Raids:CreateSection("Raid")
+Tabs.Raids:CreateSection("Dungeon")
 Tabs.Raids:CreateToggle({
     Name = "Auto Dungeon",
     Description = "",
