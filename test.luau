@@ -487,15 +487,6 @@ Tabs.Main:CreateToggle({
 -- Elit Hunter
 -- =================
 Tabs.Main:CreateSection("Elite Hunter")
-local Process = Tabs.Main:CreateParagraph({Title = "Elites Process", Content = ""})
-spawn(function()
-    while wait(Sec) do
-        pcall(function()    
-            local prog = replicated.Remotes.CommF_:InvokeServer("EliteHunter", "Progress")
-            Process:SetContent("Elite Progress : " .. tostring(prog or 0))
-        end)
-    end
-end)
 
 local EliteHunter = Tabs.Main:CreateParagraph({Title = "Elite Spawn", Content = "Status: "})
 spawn(function()
