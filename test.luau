@@ -1486,14 +1486,6 @@ Callback = function(Value)
 end})
 
 Tabs.Quests:CreateSection("Haki Color")
-Q = Tabs.Quests:CreateToggle({
-Name = "Auto Teleport Barista Cousin",
-Description = "",
-Default = false,
-Callback = function(Value)
-  _G.Tp_MasterA = Value
-end})
-
 Tabs.Quests:CreateButton({
 Name = "Buy Buso Colors",
 Description = "",
@@ -1515,6 +1507,14 @@ Description = "",
 Default = false,
 Callback = function(Value)
   _G.GetQFast = Value
+end})
+
+Q = Tabs.Quests:CreateToggle({
+Name = "Auto Teleport Barista Cousin",
+Description = "",
+Default = false,
+Callback = function(Value)
+  _G.Tp_MasterA = Value
 end})
 
 Tabs.Quests:CreateSection("Observation")
