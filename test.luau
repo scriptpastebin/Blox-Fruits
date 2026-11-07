@@ -859,7 +859,6 @@ end})
 -- ====================================================================
 -- TAB: SETTING
 -- ====================================================================
-
 Tabs.Settings:CreateSection("Setting")
 Initialize = Tabs.Settings:CreateToggle({
 Name = "Fast Attack",
