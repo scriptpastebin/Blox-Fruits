@@ -643,20 +643,20 @@ Callback = function(Value)
 end
 })
 
-Tabs.Main:CreateToggle({
-Name = "Auto Soul Reaper",
-Description = "",
-Default = false,
-Callback = function(Value)
-  _G.AutoHytHallow = Value
-end})
-
 RanBone = Tabs.Main:CreateToggle({
 Name = "Auto Random Bones",
 Description = "",
 Default = false,
 Callback = function(Value)
   _G.Auto_Random_Bone = Value
+end})
+
+Tabs.Main:CreateToggle({
+Name = "Auto Soul Reaper",
+Description = "",
+Default = false,
+Callback = function(Value)
+  _G.AutoHytHallow = Value
 end})
 
 Lucky = Tabs.Main:CreateToggle({
