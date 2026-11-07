@@ -588,18 +588,18 @@ CakeSM = Tabs.Main:CreateToggle({
 end})
 
 Tabs.Main:CreateToggle({
-    Name = "Auto Dough King Fully",
-    Default = false,
-    Callback = function(Value)
-        _G.AutoDoughKing = Value
-    end
-})
-
-Tabs.Main:CreateToggle({
     Name = "Auto Farm Dough King",
     Default = false,
     Callback = function(Value)
         _G.AutoAttackDoughKing = Value
+    end
+})
+
+Tabs.Main:CreateToggle({
+    Name = "Auto Dough King Fully",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoDoughKing = Value
     end
 })
 
