@@ -11,6 +11,7 @@ local Tabs = {
     Settings = MainSection:CreateTab("Setting", "rbxassetid://7734053495"),
     Fish = MainSection:CreateTab("Fishing", "rbxassetid://127664059821666"),
     Quests = MainSection:CreateTab("Quest And Item", "rbxassetid://13075622619"),
+    Halloween = MainSection:CreateTab("Halloween Event", "ghost"),
     SeaEvent = MainSection:CreateTab("Sea Event", "rbxassetid://10747376931"),
     Prehistoric = MainSection:CreateTab("Volcano Event", "rbxassetid://10734981750"),
     Race = MainSection:CreateTab("Mirage And Race", "rbxassetid://11162889532"),
