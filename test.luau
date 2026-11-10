@@ -1243,8 +1243,8 @@ GRP_Quests_Sword:AddToggle("Auto_Pole_V1", {
     end
 })
 
-GRP_Quests_Sword:AddToggle("Auto_Pole_V2_Beta", {
-    Title = "Auto Pole V2 Beta", 
+GRP_Quests_Sword:AddToggle("Auto_Pole_V2", {
+    Title = "Auto Pole V2", 
     Default = false, 
     Callback = function(Value)
         _G.AutoPoleV2 = Value
@@ -3180,13 +3180,13 @@ GRP_Combat_LocalPlayer_Settings:AddToggle("Accept_Allies", {Title = "Accept Alli
 
 GRP_Travel_Travel_Worlds = Tabs.Travel:AddSection("Sea")
 
-GRP_Travel_Travel_Worlds:AddButton({Title = "Travel East Blue (World 1)", Callback = function()
+GRP_Travel_Travel_Worlds:AddButton({Title = "Travel Sea 1", Callback = function()
   replicated.Remotes.CommF_:InvokeServer("TravelMain")
 end})
-GRP_Travel_Travel_Worlds:AddButton({Title = "Travel Dressrosa (World 2)", Callback = function()
+GRP_Travel_Travel_Worlds:AddButton({Title = "Travel Sea 2", Callback = function()
   replicated.Remotes.CommF_:InvokeServer("TravelDressrosa")
 end})
-GRP_Travel_Travel_Worlds:AddButton({Title = "Travel Zou (World 3)", Callback = function()
+GRP_Travel_Travel_Worlds:AddButton({Title = "Travel Sea 3", Callback = function()
   replicated.Remotes.CommF_:InvokeServer("TravelZou")
 end})
 
@@ -3195,8 +3195,8 @@ Location = {}
 for i,v in pairs(workspace["_WorldOrigin"].Locations:GetChildren()) do  
   table.insert(Location ,v.Name)
 end
-Travelllll = GRP_Travel_Travel_Island:AddDropdown("Select_Travelling", {Title = "Select Travelling", Values = Location, Default = 1, Callback = function(v) _G.Island = v end})
-GoIsland = GRP_Travel_Travel_Island:AddToggle("Auto_Travel", {Title = "Auto Travel", Default = false, Callback = function(Value)
+Travelllll = GRP_Travel_Travel_Island:AddDropdown("Select_Travelling", {Title = "Select Island", Values = Location, Default = 1, Callback = function(v) _G.Island = v end})
+GoIsland = GRP_Travel_Travel_Island:AddToggle("Auto_Travel", {Title = "Teleport Island", Default = false, Callback = function(Value)
   _G.Teleport = Value
   if Value then
     for i,v in pairs(workspace["_WorldOrigin"].Locations:GetChildren()) do
@@ -3259,7 +3259,7 @@ end})
 GRP_Travel_Travel_NPCs = Tabs.Travel:AddSection("NPC")
 local NPCList = {}
 for _, v in pairs(replicated.NPCs:GetChildren()) do table.insert(NPCList, v.Name) end
-NPCsPos = GRP_Travel_Travel_NPCs:AddDropdown("Select_NPCs", {Title = "Select NPCs", Values = NPCList, Default = 1, Callback = function(v) _G.TPNpc = v end})
+NPCsPos = GRP_Travel_Travel_NPCs:AddDropdown("Select_NPC", {Title = "Select NPCs", Values = NPCList, Default = 1, Callback = function(v) _G.TPNpc = v end})
 GoNPCs = GRP_Travel_Travel_NPCs:AddToggle("Auto_Tween_to_NPC", {Title = "Auto Tween to NPC", Default = false, Callback = function(Value)
   _G.TPNpc = Value
 end})
