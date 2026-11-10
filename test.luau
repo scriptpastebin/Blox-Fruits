@@ -4,7 +4,7 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 
 local Window = Fluent:CreateWindow({
     Title = "Flen Hub",
-    SubTitle = "discord.gg/pKS6qzcaqB",
+    SubTitle = " ",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true,
