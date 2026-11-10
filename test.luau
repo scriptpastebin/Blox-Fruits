@@ -18,7 +18,7 @@ local Tabs = {
     Settings = Window:AddTab({ Title = "Setting", Icon = "settings" }),
     Fish = Window:AddTab({ Title = "Fishing", Icon = "anchor" }),
     Quests = Window:AddTab({ Title = "Quest And Item", Icon = "scroll" }),
-    Halloween = Window:MakeTab({ Title = "Halloween Event", Icon = "ghost" }),
+    Halloween = Window:AddTab({ Title = "Halloween Event", Icon = "ghost" }),
     SeaEvent = Window:AddTab({ Title = "Sea Event", Icon = "compass" }),
     Race = Window:AddTab({ Title = "Mirage And Race", Icon = "moon" }),
     Prehistoric = Window:AddTab({ Title = "Volcano Event", Icon = "flame" }),
