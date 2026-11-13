@@ -824,16 +824,6 @@ local MasterySword = GRP_Main_Farming_Mastery:AddToggle("Auto_Mastery_All_Sword"
     end
 })
 
-GRP_Main_Update_30_Magnet_Token = Tabs.Main:AddLeftGroupbox("Update 30 / Magnet Token")
-
-GRP_Main_Update_30_Magnet_Token:AddToggle("Auto_Farm_Magnet_Token", {
-    Text = "Auto Farm Magnet Token",
-    Default = false,
-    Callback = function(v)
-        _G.AutoFarmMagnetToken = v
-    end
-})
-
 -- ====================================================================
 -- TAB: SETTING
 -- ====================================================================
