@@ -743,6 +743,10 @@ FarmAllBoss = GRP_Main_Farm_Boss:AddToggle("Auto_Farm_All_Boss", {
 
 local GRP_Main_Farming_Mastery = Tabs.Main:AddLeftGroupbox("Mastery")
 
+local posMastery = {"Cake", "Bone", "Selected Mob"}
+_G.SelectIslandMastery = "Cake"
+getgenv().SelectIslandMastery = "Cake"
+
 local MasteryIslandDropdown = GRP_Main_Farming_Mastery:AddDropdown("Choose_Location_Mastery", {
     Text = "Choose Location",
     Values = posMastery,
@@ -764,10 +768,6 @@ MasterySlider = GRP_Main_Farming_Mastery:AddSlider({
         HealthM = Value
     end
 })
-
-local posMastery = {"Cake", "Bone", "Selected Mob"}
-_G.SelectIslandMastery = "Cake"
-getgenv().SelectIslandMastery = "Cake"
 
 _G.SelectedMasterySkills = _G.SelectedMasterySkills or {["Z"] = true, ["X"] = true, ["C"] = true, ["V"] = true, ["F"] = true}
 
